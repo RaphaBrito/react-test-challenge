@@ -7,12 +7,6 @@ import {
   import { render, screen, userEvent } from "../test/utils";
   import { type Note } from "../types/note";
 
-const mockNote = {
-  id: 1,
-  title: "Test Note",
-  description: "Test Description",
-} satisfies Note;
-
 describe("NoteCard component", () => {
     it("should render correctly with an existing note", () => {
         const note = {
@@ -27,9 +21,9 @@ describe("NoteCard component", () => {
           onDelete: () => undefined,
         } satisfies NoteCardProps;
       
-        const result = render(<NoteCard {...props} />); 
+        const { container } = render(<NoteCard {...props} />); 
 
-        expect(result).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
       });
 
     it("when 'Editar' button is clicked, it should disappear", async() => {
@@ -46,8 +40,6 @@ describe("NoteCard component", () => {
             onEdit,
             onDelete: () => undefined,
         } satisfies NoteCardProps;
-
-        const result = render(<NoteCard {...props} />);
 
         await userEvent.click(screen.getByText("Editar"));
 
