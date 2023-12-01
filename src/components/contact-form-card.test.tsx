@@ -1,123 +1,187 @@
-import { expect, it, vi } from "vitest";
+import { render, screen, userEvent } from "../test/utils";
+import { ContactFormData, type Contact } from "../types/contact";
 
 import {
   ContactFormCard,
   type ContactFormCardProps,
 } from "./contact-form-card";
-import { render, screen, userEvent } from "../test/utils";
-import { type Contact } from "../types/contact";
 
-it("should render correctly without an existing contact", () => {
-  const props = {
-    onConfirm: () => {
-      return;
-    },
-    onCancel: () => {
-      return;
-    },
-  } satisfies ContactFormCardProps;
+describe("contact form card", () => {
+  it("should render correctly without an existing contact", () => {
+    const props = {
+      onConfirm: () => undefined,
+      onCancel: () => undefined,
+    } satisfies ContactFormCardProps;
 
-  const result = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
-  expect(result).toMatchSnapshot();
-});
+    const { container } = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
+    expect(container).toMatchSnapshot();
+  });
 
-it("should render correctly with an existing contact", () => {
-  const contact = {
-    id: 0,
-    name: "contact name",
-    email: "contact email",
-    phone: "contact phone",
-  } satisfies Contact;
+  it("should render correctly with an existing contact", () => {
+    const contact = {
+      id: 0,
+      name: "contact name",
+      email: "contact email",
+      phone: "contact phone",
+    } satisfies Contact;
 
-  const props = {
-    contact,
-    onConfirm: () => {
-      return;
-    },
-    onCancel: () => {
-      return;
-    },
-  } satisfies ContactFormCardProps;
+    const props = {
+      contact,
+      onConfirm: () => undefined,
+      onCancel: () => undefined,
+    } satisfies ContactFormCardProps;
 
-  const result = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
-  expect(result).toMatchSnapshot();
-});
+    const { container } = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
+    expect(container).toMatchSnapshot();
+  });
 
-it("should not confirm with invalid data", async () => {
-  const onConfirm = vi.fn();
+  it("should not confirm with invalid data", async () => {
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
 
-  const props = {
-    onConfirm,
-    onCancel: () => {
-      return;
-    },
-  } satisfies ContactFormCardProps;
+    const props = {
+      onConfirm,
+      onCancel,
+    } satisfies ContactFormCardProps;
 
-  render(<ContactFormCard {...props} />);
+    render(<ContactFormCard {...props} />);
 
-  await userEvent.click(screen.getByText("Salvar"));
+    // Get components
+    const saveButton = screen.getByText("Salvar");
+    expect(saveButton).toBeInTheDocument();
 
-  expect(onConfirm).toBeCalledTimes(0);
-});
+    // Perform actions
+    await userEvent.click(saveButton);
 
-it("should confirm with valid data", async () => {
-  const contact = {
-    id: 0,
-    name: "contact name",
-    email: "contact email",
-    phone: "contact phone",
-  } satisfies Contact;
+    // Validate
+    expect(onConfirm).toBeCalledTimes(0);
+    expect(onCancel).toBeCalledTimes(0);
+  });
 
-  // test if mock is receiving the formData
-  const onConfirm = vi.fn();
+  it("should confirm with valid data", async () => {
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
 
-  const props = {
-    contact,
-    onConfirm,
-    onCancel: () => {
-      return;
-    },
-  } satisfies ContactFormCardProps;
+    const contact = {
+      id: 0,
+      name: "contact name",
+      email: "contact email",
+      phone: "contact phone",
+    } satisfies Contact;
 
-  render(<ContactFormCard {...props} />);
+    const props = {
+      contact,
+      onConfirm,
+      onCancel,
+    } satisfies ContactFormCardProps;
 
-  await userEvent.click(screen.getByText("Salvar"));
+    const formDataResponse = {
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+    } satisfies ContactFormData;
 
-  expect(onConfirm).toBeCalledTimes(1);
-});
+    render(<ContactFormCard {...props} />);
 
-it("should confirm with new and valid data", async () => {
-  // test if mock is receiving the formData
-  const onConfirm = vi.fn();
+    // Get components
+    const saveButton = screen.getByText("Salvar");
+    expect(saveButton).toBeInTheDocument();
 
-  const props = {
-    onConfirm,
-    onCancel: () => {
-      return;
-    },
-  } satisfies ContactFormCardProps;
+    // Perform actions
+    await userEvent.click(saveButton);
 
-  render(<ContactFormCard {...props} />);
+    // Validate
+    expect(onConfirm).toBeCalledTimes(1);
+    expect(onConfirm).toBeCalledWith(formDataResponse);
+    expect(onCancel).toBeCalledTimes(0);
+  });
 
-  const nameInput = screen.getByPlaceholderText("Name");
-  expect(nameInput).toBeInTheDocument();
+  it("should confirm with new and valid data", async () => {
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
 
-  await userEvent.type(nameInput, "new name");
-  expect(nameInput).toHaveValue("new name");
+    const props = {
+      onConfirm,
+      onCancel,
+    } satisfies ContactFormCardProps;
 
-  const emailInput = screen.getByPlaceholderText("Email");
-  expect(emailInput).toBeInTheDocument();
+    const formDataResponse = {
+      name: "new name",
+      email: "new email",
+      phone: "new phone",
+    } satisfies ContactFormData;
 
-  await userEvent.type(emailInput, "new email");
-  expect(emailInput).toHaveValue("new email");
+    render(<ContactFormCard {...props} />);
 
-  const phoneInput = screen.getByPlaceholderText("Phone");
-  expect(phoneInput).toBeInTheDocument();
+    // Get components
+    const nameInput = screen.getByPlaceholderText("Name");
+    expect(nameInput).toBeInTheDocument();
 
-  await userEvent.type(phoneInput, "new phone");
-  expect(phoneInput).toHaveValue("new phone");
+    const emailInput = screen.getByPlaceholderText("Email");
+    expect(emailInput).toBeInTheDocument();
 
-  await userEvent.click(screen.getByText("Salvar"));
+    const phoneInput = screen.getByPlaceholderText("Phone");
+    expect(phoneInput).toBeInTheDocument();
 
-  expect(onConfirm).toBeCalledTimes(1);
+    const saveButton = screen.getByText("Salvar");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toBeDisabled(); // Not valid
+
+    // Mutate the inputs
+    await userEvent.type(nameInput, formDataResponse.name);
+    expect(nameInput).toHaveValue(formDataResponse.name);
+
+    await userEvent.type(emailInput, formDataResponse.email);
+    expect(emailInput).toHaveValue(formDataResponse.email);
+
+    await userEvent.type(phoneInput, formDataResponse.phone);
+    expect(phoneInput).toHaveValue(formDataResponse.phone);
+
+    expect(saveButton).toBeEnabled(); // Now it's valid
+
+    // Perform actions
+    await userEvent.click(saveButton);
+
+    // Validate
+    expect(onConfirm).toBeCalledTimes(1);
+    expect(onConfirm).toBeCalledWith(formDataResponse);
+    expect(onCancel).toBeCalledTimes(0);
+  });
+
+  it("should call onCancel when the button is pressed", async () => {
+    const onConfirm = vi.fn();
+    const onCancel = vi.fn();
+
+    const props = {
+      onConfirm,
+      onCancel,
+    } satisfies ContactFormCardProps;
+
+    render(<ContactFormCard {...props} />);
+
+    // Get components
+    const nameInput = screen.getByPlaceholderText("Name");
+    expect(nameInput).toBeInTheDocument();
+
+    const emailInput = screen.getByPlaceholderText("Email");
+    expect(emailInput).toBeInTheDocument();
+
+    const phoneInput = screen.getByPlaceholderText("Phone");
+    expect(phoneInput).toBeInTheDocument();
+
+    const saveButton = screen.getByText("Salvar");
+    expect(saveButton).toBeInTheDocument();
+    expect(saveButton).toBeDisabled(); // Not valid
+
+    const cancelButton = screen.getByText("Cancelar");
+    expect(saveButton).toBeInTheDocument();
+
+    // Perform actions
+    await userEvent.click(saveButton);
+    await userEvent.click(cancelButton);
+
+    // Validate
+    expect(onConfirm).toBeCalledTimes(0);
+    expect(onCancel).toBeCalledTimes(1);
+  });
 });

@@ -28,10 +28,6 @@ export function ContactFormCard({
   };
 
   const handleConfirm = () => {
-    if (!isValid()) {
-      return;
-    }
-
     const formData = { name, email, phone } satisfies ContactFormData;
 
     onConfirm(formData);
