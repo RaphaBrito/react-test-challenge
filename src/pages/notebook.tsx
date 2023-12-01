@@ -1,5 +1,5 @@
+import { AppError } from "../components/app-error";
 import { CreateNoteCard } from "../components/create-note-card";
-import { AppError } from "../components/error";
 import { Loading } from "../components/loading";
 import { NoteCard } from "../components/note-card";
 import {
