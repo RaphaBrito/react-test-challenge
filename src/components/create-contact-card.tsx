@@ -4,7 +4,7 @@ import { ContactFormCard } from "./contact-form-card";
 
 import type { ContactFormData } from "../types/contact";
 
-interface CreateContactCardProps {
+export interface CreateContactCardProps {
   onCreate: (formData: ContactFormData) => void;
 }
 
