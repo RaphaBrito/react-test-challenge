@@ -10,15 +10,12 @@ import {
 
   it("should render correctly without an existing note", () => {
     const props = {
-      onConfirm: () => {
-        return;
-      },
-      onCancel: () => {
-        return;
-      },
+      onConfirm: () => undefined,
+      onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
     const result = render(<NoteFormCard {...props} />); 
+
     expect(result).toMatchSnapshot();
   });
   
@@ -31,12 +28,8 @@ import {
   
     const props = {
       note,
-      onConfirm: () => {
-        return;
-      },
-      onCancel: () => {
-        return;
-      },
+      onConfirm: () => undefined,
+      onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
     const result = render(<NoteFormCard {...props} />); 
@@ -47,9 +40,7 @@ import {
   
     const props = {
       onConfirm,
-      onCancel: () => {
-        return;
-      },
+      onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
     render(<NoteFormCard {...props} />);
@@ -60,21 +51,18 @@ import {
   });
   
   it("should confirm with valid data", async () => {
+    const onConfirm = vi.fn();
+
     const note = {
       id: 0,
-      title: "contact name",
-      description: "contact email"
+      title: "note title",
+      description: "note description"
     } satisfies Note;
-  
-    // test if mock is receiving the formData
-    const onConfirm = vi.fn();
   
     const props = {
       note,
       onConfirm,
-      onCancel: () => {
-        return;
-      },
+      onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
     render(<NoteFormCard {...props} />);
@@ -85,14 +73,11 @@ import {
   });
   
   it("should confirm with new and valid data", async () => {
-    // test if mock is receiving the formData
     const onConfirm = vi.fn();
   
     const props = {
       onConfirm,
-      onCancel: () => {
-        return;
-      },
+      onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
     render(<NoteFormCard {...props} />);
@@ -113,4 +98,3 @@ import {
   
     expect(onConfirm).toBeCalledTimes(1);
   });
-  
