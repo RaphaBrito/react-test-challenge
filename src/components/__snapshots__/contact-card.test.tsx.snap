@@ -1,0 +1,52 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contact card > should render correctly 1`] = `
+<div>
+  <div
+    class="_card_277467"
+  >
+    <img
+      alt="avatar"
+      class="_cardImage_277467"
+      src="/src/assets/images/avatar.png"
+    />
+    <h3>
+      contact name
+    </h3>
+    <div
+      class="_cardContactInfo_277467"
+    >
+      <img
+        alt="phone icon"
+        height="20px"
+        src="/src/assets/icons/phone.png"
+      />
+      <p>
+        contact phone
+      </p>
+    </div>
+    <div
+      class="_cardContactInfo_277467"
+    >
+      <img
+        alt="e-mail icon"
+        height="20px"
+        src="/src/assets/icons/e-mail.png"
+      />
+      <p>
+        contact email
+      </p>
+    </div>
+    <div
+      class="_cardFooter_277467"
+    >
+      <button>
+        Editar
+      </button>
+      <button>
+        Remover
+      </button>
+    </div>
+  </div>
+</div>
+`;

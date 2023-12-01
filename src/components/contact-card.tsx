@@ -9,7 +9,7 @@ import { ContactFormCard } from "./contact-form-card";
 
 import type { Contact, ContactFormData } from "../types/contact";
 
-interface ContactCardProps {
+export interface ContactCardProps {
   contact: Contact;
   onEdit: (formData: Contact) => void;
   onDelete: (id: number) => void;
