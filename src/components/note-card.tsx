@@ -6,7 +6,7 @@ import { NoteFormCard } from "./note-form-card";
 
 import type { Note, NoteFormData } from "../types/note";
 
-interface NoteCardProps {
+export interface NoteCardProps {
   note: Note;
   onEdit: (formData: Note) => void;
   onDelete: (id: number) => void;
