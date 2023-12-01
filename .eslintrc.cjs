@@ -15,6 +15,7 @@ const config = {
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:testing-library/react",
     "prettier",
   ],
   parserOptions: {
