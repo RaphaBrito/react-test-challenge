@@ -41,6 +41,8 @@ describe("NoteCard component", () => {
             onDelete: () => undefined,
         } satisfies NoteCardProps;
 
+        render(<NoteCard {...props} />); 
+
         await userEvent.click(screen.getByText("Editar"));
 
         expect(screen.queryByText("Editar")).not.toBeInTheDocument();
