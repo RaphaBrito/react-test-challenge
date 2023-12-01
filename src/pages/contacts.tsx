@@ -1,6 +1,6 @@
+import { AppError } from "../components/app-error";
 import { ContactCard } from "../components/contact-card";
 import { CreateContactCard } from "../components/create-contact-card";
-import { AppError } from "../components/error";
 import { Loading } from "../components/loading";
 import {
   useContacts,
