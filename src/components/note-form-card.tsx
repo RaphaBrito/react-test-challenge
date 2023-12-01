@@ -4,7 +4,7 @@ import styles from "../styles/card.module.css";
 
 import type { Note, NoteFormData } from "../types/note";
 
-interface NoteFormCardProps {
+export interface NoteFormCardProps {
   note?: Note;
   onConfirm: (formData: NoteFormData) => void;
   onCancel: () => void;
