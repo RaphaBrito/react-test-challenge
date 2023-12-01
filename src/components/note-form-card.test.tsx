@@ -6,7 +6,7 @@ import {
     type NoteFormCardProps,
   } from "./note-form-card";
   import { render, screen, userEvent } from "../test/utils";
-  import { type Note } from "../types/note";
+  import { type Note, NoteFormData } from "../types/note";
 
   it("should render correctly without an existing note", () => {
     const props = {
@@ -14,9 +14,9 @@ import {
       onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
-    const result = render(<NoteFormCard {...props} />); 
+    const { container } = render(<NoteFormCard {...props} />); 
 
-    expect(result).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
   
   it("should render correctly with an existing note", () => {
@@ -32,7 +32,7 @@ import {
       onCancel: () => undefined,
     } satisfies NoteFormCardProps;
   
-    const result = render(<NoteFormCard {...props} />); 
+    const { container } = render(<NoteFormCard {...props} />); 
   });
   
   it("should not confirm with invalid data", async () => {
@@ -64,12 +64,18 @@ import {
       onConfirm,
       onCancel: () => undefined,
     } satisfies NoteFormCardProps;
+
+    const formDataResponse = {
+        title: note.title,
+        description: note.description,
+      } satisfies NoteFormData;
   
     render(<NoteFormCard {...props} />);
   
     await userEvent.click(screen.getByText("Salvar"));
   
     expect(onConfirm).toBeCalledTimes(1);
+    expect(onConfirm).toBeCalledWith(formDataResponse);
   });
   
   it("should confirm with new and valid data", async () => {
@@ -79,6 +85,11 @@ import {
       onConfirm,
       onCancel: () => undefined,
     } satisfies NoteFormCardProps;
+
+    const formDataResponse = {
+        title: "new note title",
+        description: "new description",
+      } satisfies NoteFormData;
   
     render(<NoteFormCard {...props} />);
   
@@ -97,4 +108,5 @@ import {
     await userEvent.click(screen.getByText("Salvar"));
   
     expect(onConfirm).toBeCalledTimes(1);
+    expect(onConfirm).toBeCalledWith(formDataResponse);
   });
