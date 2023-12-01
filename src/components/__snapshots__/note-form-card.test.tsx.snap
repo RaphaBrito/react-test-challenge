@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should render correctly without an existing note 1`] = `
+<div>
+  <div
+    class="_card_277467"
+  >
+    <input
+      placeholder="Title"
+      value=""
+    />
+    <input
+      placeholder="Description"
+      value=""
+    />
+    <div
+      class="_cardFooter_277467"
+    >
+      <button
+        disabled=""
+      >
+        Salvar
+      </button>
+      <button>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+`;
