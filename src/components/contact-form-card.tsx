@@ -4,7 +4,7 @@ import styles from "../styles/card.module.css";
 
 import type { Contact, ContactFormData } from "../types/contact";
 
-interface ContactFormCardProps {
+export interface ContactFormCardProps {
   contact?: Contact;
   onConfirm: (formData: ContactFormData) => void;
   onCancel: () => void;
