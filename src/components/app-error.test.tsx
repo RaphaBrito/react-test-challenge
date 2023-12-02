@@ -1,8 +1,6 @@
-import { expect, it } from "vitest";
+import { render } from "@testing-library/react";
 
-import { render } from "../test/utils";
-
-import { AppError } from "./app-error";
+import { AppError } from "@/components/app-error";
 
 it("should render correctly", () => {
   const { container } = render(<AppError />);

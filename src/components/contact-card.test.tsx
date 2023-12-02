@@ -1,7 +1,8 @@
-import { render, screen, userEvent } from "../test/utils";
-import { type Contact } from "../types/contact";
+import { render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
-import { ContactCard, type ContactCardProps } from "./contact-card";
+import { ContactCard, type ContactCardProps } from "@/components/contact-card";
+import { type Contact } from "@/types/contact";
 
 describe("contact card", () => {
   it("should render correctly", () => {

@@ -1,10 +1,11 @@
-import { render, screen, userEvent } from "../test/utils";
-import { ContactFormData, type Contact } from "../types/contact";
+import { render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 import {
   CreateContactCard,
   type CreateContactCardProps,
-} from "./create-contact-card";
+} from "@/components/create-contact-card";
+import { type ContactFormData } from "@/types/contact";
 
 describe("create contact card", () => {
   it("should render correctly", () => {
@@ -48,7 +49,7 @@ describe("create contact card", () => {
 
     const cancelButton = screen.getByText("Cancelar");
     expect(cancelButton).toBeInTheDocument();
-    await userEvent.click(cancelButton)
+    await userEvent.click(cancelButton);
 
     expect(container).toMatchSnapshot();
   });

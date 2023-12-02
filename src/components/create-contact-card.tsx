@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { ContactFormCard } from "./contact-form-card";
-
-import type { ContactFormData } from "../types/contact";
+import { ContactFormCard } from "@/components/contact-form-card";
+import { type ContactFormData } from "@/types/contact";
 
 export interface CreateContactCardProps {
   onCreate: (formData: ContactFormData) => void;

@@ -1,10 +1,11 @@
-import { render, screen, userEvent } from "../test/utils";
-import { ContactFormData, type Contact } from "../types/contact";
+import { render, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
 
 import {
   ContactFormCard,
   type ContactFormCardProps,
-} from "./contact-form-card";
+} from "@/components/contact-form-card";
+import { ContactFormData, type Contact } from "@/types/contact";
 
 describe("contact form card", () => {
   it("should render correctly without an existing contact", () => {
@@ -13,7 +14,7 @@ describe("contact form card", () => {
       onCancel: () => undefined,
     } satisfies ContactFormCardProps;
 
-    const { container } = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
+    const { container } = render(<ContactFormCard {...props} />);
     expect(container).toMatchSnapshot();
   });
 
@@ -31,7 +32,7 @@ describe("contact form card", () => {
       onCancel: () => undefined,
     } satisfies ContactFormCardProps;
 
-    const { container } = render(<ContactFormCard {...props} />); // <ContactFormCard contact={props.contact} onConfirm={props.onConfirm} onCancel={props.onCancel} />
+    const { container } = render(<ContactFormCard {...props} />);
     expect(container).toMatchSnapshot();
   });
 

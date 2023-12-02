@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import styles from "../styles/card.module.css";
-
-import type { Contact, ContactFormData } from "../types/contact";
+import styles from "@/styles/card.module.css";
+import { type Contact, type ContactFormData } from "@/types/contact";
 
 export interface ContactFormCardProps {
   contact?: Contact;
