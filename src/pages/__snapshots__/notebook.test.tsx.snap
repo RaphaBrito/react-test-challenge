@@ -1,5 +1,21 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Notebook component > renders error state 1`] = `
+<div>
+  <h1>
+    Que pena, algo de errado aconteceu :(
+  </h1>
+</div>
+`;
+
+exports[`Notebook component > renders loading state 1`] = `
+<div>
+  <h1>
+    Carregando...
+  </h1>
+</div>
+`;
+
 exports[`Notebook component > renders notes correctly 1`] = `
 <div>
   <div>

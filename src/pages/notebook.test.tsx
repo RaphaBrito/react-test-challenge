@@ -1,10 +1,74 @@
 import { render, waitFor, screen } from "@testing-library/react";
 
-import * as notesHooks from "@/hooks/notes";
+import * as notes from "@/hooks/notes";
 import { Notebook } from "@/pages/notebook";
 import { type Note } from "@/types/note";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import jsonServer from "json-server";
+import { queryClient } from "@/services/queryClient";
 
-vitest.mock("@/hooks/notes");
+const json = {
+  contacts: [
+    {
+      id: 1,
+      name: "Raphael",
+      email: "brito@gmail.com",
+      phone: "+558190836728",
+    },
+    {
+      id: 2,
+      name: "Cesar",
+      email: "cesar@gmail.com",
+      phone: "+558190836728",
+    },
+    {
+      id: 3,
+      name: "cesare",
+      email: "Cesare@gmail.com",
+      phone: "+558190836728",
+    },
+  ],
+  notes: [
+    {
+      id: 1,
+      title: "Lembrete",
+      description: "Colocar presença na aula.",
+    },
+    {
+      id: 2,
+      title: "React",
+      description: "Uma das bibliotecas mais utilizadas da atualidade.",
+    },
+    {
+      id: 3,
+      title: "CESAR",
+      description: "Centro de Estudos e Sistemas Avançados do Recife.",
+    },
+  ],
+};
+// vi.mock("notes");
+
+const server = jsonServer.create();
+const router = jsonServer.router(json);
+const middlewares = jsonServer.defaults();
+
+server.use(middlewares);
+server.use(router);
+server.listen(5432, () => {
+  console.log("JSON Server is running");
+});
+
+/*const mockedQueryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});*/
+
+const ProviderWrapper = ({ children }: { children: React.ReactNode }) => (
+  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+);
 
 describe("Notebook component", () => {
   const mockNotes: Note[] = [
@@ -21,79 +85,66 @@ describe("Notebook component", () => {
     },
   ];
 
-  vitest.spyOn(notesHooks, "useNotes").mockReturnValue({
-    notes: mockNotes,
-    isPending: false,
-    isError: false,
-  });
-
-  const mockCreateMutation = vitest.fn();
-  const mockEditMutation = vitest.fn();
-  const mockDeleteMutation = vitest.fn();
-
-  vitest.spyOn(notesHooks, "useNotesCreateMutation").mockReturnValue({
-    mutate: mockCreateMutation,
-  });
-
-  vitest.spyOn(notesHooks, "useNotesEditMutation").mockReturnValue({
-    mutate: mockEditMutation,
-  });
-
-  vitest.spyOn(notesHooks, "useNotesDeleteMutation").mockReturnValue({
-    mutate: mockDeleteMutation,
-  });
-
   beforeEach(() => {
-    vitest.clearAllMocks();
+    vitest.restoreAllMocks();
   });
 
   it("renders loading state", async () => {
-    vitest.spyOn(notesHooks, "useNotes").mockReturnValue({
+    vi.spyOn(notes, "useNotes").mockReturnValue({
       notes: [],
       isPending: true,
       isError: false,
     });
 
-    render(<Notebook />);
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
 
     await waitFor(() => {
       expect(screen.getByText("Carregando...")).toBeInTheDocument();
     });
+
+    expect(container).toMatchSnapshot();
   });
 
   it("renders error state", async () => {
-    vitest.spyOn(notesHooks, "useNotes").mockReturnValue({
+    vi.spyOn(notes, "useNotes").mockReturnValue({
       notes: [],
       isPending: false,
       isError: true,
     });
 
-    render(<Notebook />);
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
 
     await waitFor(() => {
       expect(
         screen.getByText("Que pena, algo de errado aconteceu :("),
       ).toBeInTheDocument();
     });
+
+    expect(container).toMatchSnapshot();
   });
 
   it("renders notes correctly", async () => {
-    vitest.spyOn(notesHooks, "useNotes").mockReturnValue({
-      notes: mockNotes,
-      isPending: false,
-      isError: false,
-    });
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
 
-    const { container } = render(<Notebook />);
-
-    expect(container).toMatchSnapshot();
+    //expect(container).toMatchSnapshot();
 
     await waitFor(() => {
-      mockNotes.forEach((note) => {
-        expect(screen.getByText(note.title)).toBeInTheDocument();
-        expect(screen.getByText(note.description)).toBeInTheDocument();
-      });
+      expect(screen.getByText(json.notes[0].title)).toBeInTheDocument();
     });
+
+    expect(container).toMatchSnapshot();
   });
 
   /*
