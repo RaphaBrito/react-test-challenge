@@ -4,7 +4,7 @@ import { NoteFormCard } from "./note-form-card";
 
 import type { NoteFormData } from "../types/note";
 
-interface CreateNoteCardProps {
+export interface CreateNoteCardProps {
   onCreate: (formData: NoteFormData) => void;
 }
 
