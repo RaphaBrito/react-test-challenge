@@ -23,7 +23,7 @@ describe("NoteCard component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("when 'Editar' button is clicked, it should disappear", async () => {
+  it("should call onEdit with modified data", async () => {
     const onEdit = vi.fn();
 
     const note = {
@@ -31,6 +31,8 @@ describe("NoteCard component", () => {
       title: "note title",
       description: "note description",
     } satisfies Note;
+
+    const formData = note;
 
     const props = {
       note,
@@ -40,11 +42,23 @@ describe("NoteCard component", () => {
 
     render(<NoteCard {...props} />);
 
-    await userEvent.click(screen.getByText("Editar"));
+      let editButton = screen.getByText("Editar");
+    expect(editButton).toBeInTheDocument();
 
-    expect(screen.queryByText("Editar")).not.toBeInTheDocument();
-    expect(screen.queryByText("Salvar")).toBeInTheDocument();
-    expect(screen.queryByText("Cancelar")).toBeInTheDocument();
+    await userEvent.click(editButton);
+    expect(editButton).not.toBeInTheDocument();
+
+    // Card "flipped" to editing mode
+    const saveButton = screen.getByText("Salvar");
+    expect(saveButton).toBeInTheDocument();
+
+    await userEvent.click(saveButton);
+
+    // Has returned to the viewing mode
+    editButton = screen.getByText("Editar");
+    expect(editButton).toBeInTheDocument();
+
+    expect(onEdit).toBeCalledWith(formData);
   });
 
   it("should call onDelete when 'Remover' button is clicked", async () => {
@@ -67,5 +81,38 @@ describe("NoteCard component", () => {
     await userEvent.click(screen.getByText("Remover"));
 
     expect(onDelete).toHaveBeenCalledWith(note.id);
+  });
+
+  it("should cancel when editing", async () => {
+    const note = {
+      id: 0,
+      title: "note title",
+      description: "note description",
+    } satisfies Note;
+
+    const props = {
+      note,
+      onEdit: () => undefined,
+      onDelete: () => undefined,
+    } satisfies NoteCardProps;
+
+    render(<NoteCard {...props} />);
+
+    let editButton = screen.getByText("Editar");
+    expect(editButton).toBeInTheDocument();
+
+    await userEvent.click(editButton);
+    expect(editButton).not.toBeInTheDocument();
+
+    // Card "flipped" to editing mode
+    const cancelButton = screen.getByText("Cancelar");
+    expect(cancelButton).toBeInTheDocument();
+
+    await userEvent.click(cancelButton);
+
+    // Has returned to the viewing mode
+    editButton = screen.getByText("Editar");
+    expect(editButton).toBeInTheDocument();
+    
   });
 });
