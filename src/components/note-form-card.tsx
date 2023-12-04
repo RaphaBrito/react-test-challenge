@@ -19,9 +19,9 @@ export function NoteFormCard({ note, onConfirm, onCancel }: NoteFormCardProps) {
   };
 
   const handleConfirm = () => {
-    if (!isValid()) {
-      return;
-    }
+    // if (!isValid()) {
+    //   return;
+    // }
 
     const formData = { title, description } satisfies NoteFormData;
 
