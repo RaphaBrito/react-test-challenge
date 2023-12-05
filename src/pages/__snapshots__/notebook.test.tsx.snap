@@ -166,26 +166,6 @@ exports[`Notebook component > handles note editing 1`] = `
           </button>
         </div>
       </div>
-      <div
-        class="_card_277467"
-      >
-        <h3>
-          new note title
-        </h3>
-        <p>
-          new description
-        </p>
-        <div
-          class="_cardFooter_277467"
-        >
-          <button>
-            Editar
-          </button>
-          <button>
-            Remover
-          </button>
-        </div>
-      </div>
       <button>
         +
       </button>
