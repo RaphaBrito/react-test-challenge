@@ -10,12 +10,7 @@ export function useNotes() {
   } = useQuery<Note[]>({
     queryKey: ["notes"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:5432/notes");
-      if (!response.ok) {
-        throw new Error("Erro ao carregar os dados da lista de notas");
-      }
-
-      return response.json();
+      return (await fetch("http://localhost:5432/notes")).json();
     },
   });
 
