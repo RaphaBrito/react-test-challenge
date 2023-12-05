@@ -1,12 +1,11 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, waitFor, screen } from "@testing-library/react";
+import { userEvent } from "@testing-library/user-event";
+import jsonServer from "json-server";
 
 import * as notes from "@/hooks/notes";
 import { Notebook } from "@/pages/notebook";
-import { NoteFormData, type Note } from "@/types/note";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import jsonServer from "json-server";
-//import { queryClient } from "@/services/queryClient";
-import userEvent from "@testing-library/user-event";
+import { type NoteFormData } from "@/types/note";
 
 const json = {
   contacts: [
@@ -86,7 +85,6 @@ afterEach(() => {
 
   router.db.setState(JSON.parse(JSON.stringify(json)) as typeof json);
   router.db.write();
-
 });
 
 describe("Notebook component", () => {
@@ -104,6 +102,10 @@ describe("Notebook component", () => {
         <Notebook />
       </ProviderWrapper>,
     );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     await waitFor(() => {
       expect(screen.getByText("Carregando...")).toBeInTheDocument();
@@ -128,6 +130,10 @@ describe("Notebook component", () => {
     );
 
     await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    await waitFor(() => {
       expect(
         screen.getByText("Que pena, algo de errado aconteceu :("),
       ).toBeInTheDocument();
@@ -145,7 +151,9 @@ describe("Notebook component", () => {
       </ProviderWrapper>,
     );
 
-    //expect(container).toMatchSnapshot();
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(json.notes[0].title)).toBeInTheDocument();
@@ -170,7 +178,7 @@ describe("Notebook component", () => {
 
     await waitFor(() => {
       expect(queryClient.isFetching()).toBe(0);
-    })
+    });
 
     await userEvent.click(screen.getByText("+"));
 
@@ -206,7 +214,7 @@ describe("Notebook component", () => {
 
     await waitFor(() => {
       expect(queryClient.isFetching()).toBe(0);
-    })
+    });
 
     const firstEditButton = screen.getAllByText("Editar")[0];
 
@@ -244,55 +252,17 @@ describe("Notebook component", () => {
 
     await waitFor(() => {
       expect(queryClient.isFetching()).toBe(0);
-    })
+    });
 
     const firstTitle = screen.getByText("Lembrete");
     const firstDeleteButton = screen.getAllByText("Remover")[0];
 
     await userEvent.click(firstDeleteButton);
 
-    // Wait for mutation to complete
     await waitFor(() => {
-      //expect(firstTitle).not.toBeInTheDocument();
+      expect(firstTitle).not.toBeInTheDocument();
     });
+
+    expect(container).toMatchSnapshot();
   });
-
-  /*
-  
-
-  it("handles note editing", async () => {
-    render(Notebook);
-
-    fireEvent.click(screen.getByText("Editar"));
-
-    // Simulate form input
-    fireEvent.input(screen.getByPlaceholderText("Título"), {
-      target: { value: "Updated Note Title" },
-    });
-    fireEvent.input(screen.getByPlaceholderText("Descrição"), {
-      target: { value: "Updated Note Description" },
-    });
-
-    fireEvent.click(screen.getByText("Salvar"));
-
-    // Wait for mutation to complete
-    await waitFor(() => {
-      expect(mockEditMutation).toHaveBeenCalledWith({
-        id: mockNotes[0].id,
-        title: "Updated Note Title",
-        description: "Updated Note Description",
-      });
-    });
-  });
-
-  it("handles note deletion", async () => {
-    render(Notebook);
-
-    fireEvent.click(screen.getByText("Remover"));
-
-    // Wait for mutation to complete
-    await waitFor(() => {
-      expect(mockDeleteMutation).toHaveBeenCalledWith(mockNotes[0].id);
-    });
-  });*/
 });

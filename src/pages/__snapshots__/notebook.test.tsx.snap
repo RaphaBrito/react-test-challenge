@@ -97,6 +97,63 @@ exports[`Notebook component > handles note creation 1`] = `
 </div>
 `;
 
+exports[`Notebook component > handles note deletion 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`Notebook component > handles note editing 1`] = `
 <div>
   <div>
