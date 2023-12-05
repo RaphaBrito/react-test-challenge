@@ -9,6 +9,10 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
+    sequence: {
+      concurrent: false,
+      setupFiles: "list",
+    },
   },
   plugins: [react(), tsconfigPaths()],
 });
