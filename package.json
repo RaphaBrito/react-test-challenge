@@ -10,9 +10,9 @@
     "lint": "eslint ./src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier -w ./src",
     "preview": "vite preview",
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage"
+    "test": "vitest --pool forks --poolOptions.forks.isolate false",
+    "test:ui": "vitest --ui --pool forks --poolOptions.forks.isolate false",
+    "coverage": "vitest run --coverage --pool forks --poolOptions.forks.isolate false"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.12.2",
