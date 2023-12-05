@@ -1,3 +1,5 @@
+import "@/test/utils";
+
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
@@ -42,7 +44,7 @@ describe("NoteCard component", () => {
 
     render(<NoteCard {...props} />);
 
-      let editButton = screen.getByText("Editar");
+    let editButton = screen.getByText("Editar");
     expect(editButton).toBeInTheDocument();
 
     await userEvent.click(editButton);
@@ -113,6 +115,5 @@ describe("NoteCard component", () => {
     // Has returned to the viewing mode
     editButton = screen.getByText("Editar");
     expect(editButton).toBeInTheDocument();
-    
   });
 });

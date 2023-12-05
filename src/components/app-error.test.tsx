@@ -1,3 +1,5 @@
+import "@/test/utils";
+
 import { render } from "@testing-library/react";
 
 import { AppError } from "@/components/app-error";

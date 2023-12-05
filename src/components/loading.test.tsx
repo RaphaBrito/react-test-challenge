@@ -1,6 +1,6 @@
-import { expect, it } from "vitest";
+import "@/test/utils";
 
-import { render } from "../test/utils";
+import { render } from "@testing-library/react";
 
 import { Loading } from "./loading";
 

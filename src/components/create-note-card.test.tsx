@@ -1,3 +1,5 @@
+import "@/test/utils";
+
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
@@ -59,7 +61,7 @@ describe("create note card", () => {
 
     const formDataResponse = {
       title: "new title",
-      description: "new description"
+      description: "new description",
     } satisfies NoteFormData;
 
     const props = {

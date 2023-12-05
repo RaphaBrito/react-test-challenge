@@ -1,3 +1,5 @@
+import "@/test/utils";
+
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 
@@ -14,7 +16,6 @@ it("should render correctly without an existing note", () => {
   } satisfies NoteFormCardProps;
 
   const { container } = render(<NoteFormCard {...props} />);
-
   expect(container).toMatchSnapshot();
 });
 
@@ -32,6 +33,7 @@ it("should render correctly with an existing note", () => {
   } satisfies NoteFormCardProps;
 
   const { container } = render(<NoteFormCard {...props} />);
+  expect(container).toMatchSnapshot();
 });
 
 it("should not confirm with invalid data", async () => {

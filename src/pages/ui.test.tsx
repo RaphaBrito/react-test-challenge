@@ -1,3 +1,5 @@
+import "@/test/utils";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, waitFor, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
@@ -46,10 +48,9 @@ const json = {
     },
   ],
 };
-// vi.mock("notes");
 
 const server = jsonServer.create();
-const router = jsonServer.router(json);
+export const router = jsonServer.router(json);
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
@@ -57,6 +58,11 @@ server.use(router);
 server.listen(5432, () => {
   console.log("JSON Server is running");
 });
+
+const resetDatabase = () => {
+  router.db.setState(JSON.parse(JSON.stringify(json)) as typeof json);
+  router.db.write();
+};
 
 function makeQueryClient(): QueryClient {
   return new QueryClient({
@@ -83,12 +89,14 @@ function ProviderWrapper({
 afterEach(() => {
   vi.restoreAllMocks();
 
-  router.db.setState(JSON.parse(JSON.stringify(json)) as typeof json);
-  router.db.write();
+  // router.db.setState(JSON.parse(JSON.stringify(json)) as typeof json);
+  // router.db.write();
+
+  resetDatabase();
 });
 
-describe("Notebook component", () => {
-  it("renders loading state", async () => {
+describe("ui tests", () => {
+  it("notebook renders loading state", async () => {
     vi.spyOn(notes, "useNotes").mockReturnValue({
       notes: [],
       isPending: true,
@@ -114,7 +122,7 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("renders error state", async () => {
+  it("notebook renders error state", async () => {
     vi.spyOn(notes, "useNotes").mockReturnValue({
       notes: [],
       isPending: false,
@@ -142,7 +150,7 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("renders notes correctly", async () => {
+  it("notebook renders notes correctly", async () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
@@ -162,7 +170,7 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("handles note creation", async () => {
+  it("notebook handles note creation", async () => {
     const formDataResponse = {
       title: "new note title",
       description: "new description",
@@ -203,7 +211,7 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("handles note editing", async () => {
+  it("notebook handles note editing", async () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
@@ -241,7 +249,185 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("handles note deletion", async () => {
+  it("notebook handles note deletion", async () => {
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    const firstTitle = screen.getByText("Lembrete");
+    const firstDeleteButton = screen.getAllByText("Remover")[0];
+
+    await userEvent.click(firstDeleteButton);
+
+    await waitFor(() => {
+      expect(firstTitle).not.toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts renders loading state", async () => {
+    vi.spyOn(notes, "useNotes").mockReturnValue({
+      notes: [],
+      isPending: true,
+      isError: false,
+    });
+
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText("Carregando...")).toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts renders error state", async () => {
+    vi.spyOn(notes, "useNotes").mockReturnValue({
+      notes: [],
+      isPending: false,
+      isError: true,
+    });
+
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("Que pena, algo de errado aconteceu :("),
+      ).toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts renders notes correctly", async () => {
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText(json.notes[0].title)).toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts handles note creation", async () => {
+    const formDataResponse = {
+      title: "new note title",
+      description: "new description",
+    } satisfies NoteFormData;
+
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    await userEvent.click(screen.getByText("+"));
+
+    const titleInput = screen.getByPlaceholderText("Title");
+    expect(titleInput).toBeInTheDocument();
+
+    await userEvent.type(titleInput, "new note title");
+    expect(titleInput).toHaveValue("new note title");
+
+    const descriptionInput = screen.getByPlaceholderText("Description");
+    expect(descriptionInput).toBeInTheDocument();
+
+    await userEvent.type(descriptionInput, "new description");
+    expect(descriptionInput).toHaveValue("new description");
+
+    await userEvent.click(screen.getByText("Salvar"));
+
+    await waitFor(() => {
+      expect(screen.getByText(formDataResponse.title)).toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts handles note editing", async () => {
+    const queryClient = makeQueryClient();
+
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
+
+    const firstEditButton = screen.getAllByText("Editar")[0];
+
+    await userEvent.click(firstEditButton);
+
+    const titleInput = screen.getByPlaceholderText("Title");
+    expect(titleInput).toBeInTheDocument();
+
+    await userEvent.clear(titleInput);
+    await userEvent.type(titleInput, "edited note title");
+
+    const descriptionInput = screen.getByPlaceholderText("Description");
+    expect(descriptionInput).toBeInTheDocument();
+
+    await userEvent.clear(descriptionInput);
+    await userEvent.type(descriptionInput, "edited description");
+
+    await userEvent.click(screen.getByText("Salvar"));
+
+    await waitFor(() => {
+      expect(screen.getByText("edited note title")).toBeInTheDocument();
+    });
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("contacts handles note deletion", async () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
