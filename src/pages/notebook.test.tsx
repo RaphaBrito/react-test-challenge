@@ -2,10 +2,11 @@ import { render, waitFor, screen } from "@testing-library/react";
 
 import * as notes from "@/hooks/notes";
 import { Notebook } from "@/pages/notebook";
-import { type Note } from "@/types/note";
+import { NoteFormData, type Note } from "@/types/note";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import jsonServer from "json-server";
 import { queryClient } from "@/services/queryClient";
+import userEvent from "@testing-library/user-event";
 
 const json = {
   contacts: [
@@ -147,30 +148,94 @@ describe("Notebook component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  /*
   it("handles note creation", async () => {
-    render(Notebook);
+    const formDataResponse = {
+      title: "new note title",
+      description: "new description",
+    } satisfies NoteFormData;
+    
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
 
-    fireEvent.click(screen.getByText("Nova Nota"));
+    await userEvent.click(screen.getByText("+"));
 
-    // Simulate form input
-    fireEvent.input(screen.getByPlaceholderText("Título"), {
-      target: { value: "New Note Title" },
+    const titleInput = screen.getByPlaceholderText("Title");
+    expect(titleInput).toBeInTheDocument();
+  
+    await userEvent.type(titleInput, "new note title");
+    expect(titleInput).toHaveValue("new note title");
+  
+    const descriptionInput = screen.getByPlaceholderText("Description");
+    expect(descriptionInput).toBeInTheDocument();
+  
+    await userEvent.type(descriptionInput, "new description");
+    expect(descriptionInput).toHaveValue("new description");
+  
+    await userEvent.click(screen.getByText("Salvar"));
+
+    await waitFor(() => {
+      expect(screen.getByText(formDataResponse.title)).toBeInTheDocument();
     });
-    fireEvent.input(screen.getByPlaceholderText("Descrição"), {
-      target: { value: "New Note Description" },
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it("handles note editing", async () => {
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    const firstEditButton = screen.getAllByText("Editar")[0];
+
+
+    await userEvent.click(firstEditButton);
+
+    const titleInput = screen.getByPlaceholderText("Title");
+    expect(titleInput).toBeInTheDocument();
+  
+    await userEvent.clear(titleInput);
+    await userEvent.type(titleInput, "edited note title");
+  
+    const descriptionInput = screen.getByPlaceholderText("Description");
+    expect(descriptionInput).toBeInTheDocument();
+    
+    await userEvent.clear(descriptionInput);
+    await userEvent.type(descriptionInput, "edited description");
+  
+    await userEvent.click(screen.getByText("Salvar"));
+
+    await waitFor(() => {
+      expect(screen.getByText("edited note title")).toBeInTheDocument();
     });
 
-    fireEvent.click(screen.getByText("Salvar"));
+    expect(container).toMatchSnapshot();
+  });
+
+  it("handles note deletion", async () => {
+    const { container } = render(
+      <ProviderWrapper>
+        <Notebook />
+      </ProviderWrapper>,
+    );
+
+    const firstTitle = screen.getByText("Lembrete");
+    const firstDeleteButton = screen.getAllByText("Remover")[0];
+
+    await userEvent.click(firstDeleteButton);
 
     // Wait for mutation to complete
     await waitFor(() => {
-      expect(mockCreateMutation).toHaveBeenCalledWith({
-        title: "New Note Title",
-        description: "New Note Description",
-      });
+      expect(firstTitle).not.toBeInTheDocument();
     });
   });
+
+  /*
+  
 
   it("handles note editing", async () => {
     render(Notebook);
