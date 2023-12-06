@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`contact form card > should render correctly with an existing contact 1`] = `
+<div>
+  <div
+    class="_card_277467"
+  >
+    <input
+      placeholder="Name"
+      value="contact name"
+    />
+    <input
+      placeholder="Phone"
+      value="contact phone"
+    />
+    <input
+      placeholder="Email"
+      value="contact email"
+    />
+    <div
+      class="_cardFooter_277467"
+    >
+      <button>
+        Salvar
+      </button>
+      <button>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`contact form card > should render correctly without an existing contact 1`] = `
+<div>
+  <div
+    class="_card_277467"
+  >
+    <input
+      placeholder="Name"
+      value=""
+    />
+    <input
+      placeholder="Phone"
+      value=""
+    />
+    <input
+      placeholder="Email"
+      value=""
+    />
+    <div
+      class="_cardFooter_277467"
+    >
+      <button
+        disabled=""
+      >
+        Salvar
+      </button>
+      <button>
+        Cancelar
+      </button>
+    </div>
+  </div>
+</div>
+`;

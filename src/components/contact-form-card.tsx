@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-import styles from "../styles/card.module.css";
+import styles from "@/styles/card.module.css";
+import { type Contact, type ContactFormData } from "@/types/contact";
 
-import type { Contact, ContactFormData } from "../types/contact";
-
-interface ContactFormCardProps {
+export interface ContactFormCardProps {
   contact?: Contact;
   onConfirm: (formData: ContactFormData) => void;
   onCancel: () => void;
@@ -28,10 +27,6 @@ export function ContactFormCard({
   };
 
   const handleConfirm = () => {
-    if (!isValid()) {
-      return;
-    }
-
     const formData = { name, email, phone } satisfies ContactFormData;
 
     onConfirm(formData);

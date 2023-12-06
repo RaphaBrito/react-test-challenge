@@ -4,7 +4,7 @@ import styles from "../styles/card.module.css";
 
 import type { Note, NoteFormData } from "../types/note";
 
-interface NoteFormCardProps {
+export interface NoteFormCardProps {
   note?: Note;
   onConfirm: (formData: NoteFormData) => void;
   onCancel: () => void;
@@ -19,10 +19,6 @@ export function NoteFormCard({ note, onConfirm, onCancel }: NoteFormCardProps) {
   };
 
   const handleConfirm = () => {
-    if (!isValid()) {
-      return;
-    }
-
     const formData = { title, description } satisfies NoteFormData;
 
     onConfirm(formData);

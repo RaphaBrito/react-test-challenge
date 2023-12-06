@@ -1,16 +1,16 @@
-import { CreateNoteCard } from "../components/create-note-card";
-import { AppError } from "../components/error";
-import { Loading } from "../components/loading";
-import { NoteCard } from "../components/note-card";
+import { AppError } from "@/components/app-error";
+import { CreateNoteCard } from "@/components/create-note-card";
+import { Loading } from "@/components/loading";
+import { NoteCard } from "@/components/note-card";
 import {
   useNotes,
   useNotesCreateMutation,
   useNotesDeleteMutation,
   useNotesEditMutation,
-} from "../hooks/notes";
-import styles from "../styles/list.module.css";
+} from "@/hooks/notes";
+import styles from "@/styles/list.module.css";
 
-import type { Note, NoteFormData } from "../types/note";
+import type { Note, NoteFormData } from "@/types/note";
 
 export function Notebook() {
   const { notes = [], isPending, isError } = useNotes();

@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NoteCard component > should render correctly with an existing note 1`] = `
+<div>
+  <div
+    class="_card_277467"
+  >
+    <h3>
+      note title
+    </h3>
+    <p>
+      note description
+    </p>
+    <div
+      class="_cardFooter_277467"
+    >
+      <button>
+        Editar
+      </button>
+      <button>
+        Remover
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-import EmailIcon from "../assets/icons/e-mail.png";
-import PhoneIcon from "../assets/icons/phone.png";
-import AvatarPlaceholder from "../assets/images/avatar.png";
-import styles from "../styles/card.module.css";
+import EmailIcon from "@/assets/icons/e-mail.png";
+import PhoneIcon from "@/assets/icons/phone.png";
+import AvatarPlaceholder from "@/assets/images/avatar.png";
+import { ContactFormCard } from "@/components/contact-form-card";
+import styles from "@/styles/card.module.css";
+import { type Contact, type ContactFormData } from "@/types/contact";
 
-import { ContactFormCard } from "./contact-form-card";
-
-import type { Contact, ContactFormData } from "../types/contact";
-
-interface ContactCardProps {
+export interface ContactCardProps {
   contact: Contact;
   onEdit: (formData: Contact) => void;
   onDelete: (id: number) => void;

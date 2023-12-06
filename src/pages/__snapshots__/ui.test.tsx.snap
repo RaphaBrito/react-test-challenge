@@ -1,0 +1,1277 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ui tests > contacts handles note creation 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          Lembrete
+        </h3>
+        <p>
+          Colocar presença na aula.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          new note title
+        </h3>
+        <p>
+          new description
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > contacts handles note deletion 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > contacts handles note editing 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          edited note title
+        </h3>
+        <p>
+          edited description
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > contacts renders error state 1`] = `
+<div>
+  <h1>
+    Que pena, algo de errado aconteceu :(
+  </h1>
+</div>
+`;
+
+exports[`ui tests > contacts renders loading state 1`] = `
+<div>
+  <h1>
+    Carregando...
+  </h1>
+</div>
+`;
+
+exports[`ui tests > contacts renders notes correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          Lembrete
+        </h3>
+        <p>
+          Colocar presença na aula.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > handles contact creation 1`] = `
+<div>
+  <div>
+    <h1>
+      Contatos
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Raphael
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            brito@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Cesar
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            cesar@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          cesare
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            Cesare@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          new name
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            new phone
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            new email
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > handles contact deletion 1`] = `
+<div>
+  <div>
+    <h1>
+      Contatos
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Cesar
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            cesar@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          cesare
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            Cesare@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > handles contact editing 1`] = `
+<div>
+  <div>
+    <h1>
+      Contatos
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          edited name
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            edited phone
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            edited email
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Cesar
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            cesar@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          cesare
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            Cesare@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > notebook handles note creation 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          Lembrete
+        </h3>
+        <p>
+          Colocar presença na aula.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          new note title
+        </h3>
+        <p>
+          new description
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > notebook handles note deletion 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > notebook handles note editing 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          edited note title
+        </h3>
+        <p>
+          edited description
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > notebook renders error state 1`] = `
+<div>
+  <h1>
+    Que pena, algo de errado aconteceu :(
+  </h1>
+</div>
+`;
+
+exports[`ui tests > notebook renders loading state 1`] = `
+<div>
+  <h1>
+    Carregando...
+  </h1>
+</div>
+`;
+
+exports[`ui tests > notebook renders notes correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Bloco de notas
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          Lembrete
+        </h3>
+        <p>
+          Colocar presença na aula.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          React
+        </h3>
+        <p>
+          Uma das bibliotecas mais utilizadas da atualidade.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <h3>
+          CESAR
+        </h3>
+        <p>
+          Centro de Estudos e Sistemas Avançados do Recife.
+        </p>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > renders contacts correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Contatos
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Raphael
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            brito@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Cesar
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            cesar@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          cesare
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            Cesare@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ui tests > renders contacts error state 1`] = `
+<div>
+  <h1>
+    Que pena, algo de errado aconteceu :(
+  </h1>
+</div>
+`;

@@ -10,12 +10,7 @@ export function useContacts() {
   } = useQuery<Contact[]>({
     queryKey: ["contacts"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:5432/contacts");
-      if (!response.ok) {
-        throw new Error("Erro ao carregar os dados da lista de contatos");
-      }
-
-      return response.json();
+      return (await fetch("http://localhost:5432/contacts")).json();
     },
   });
 
