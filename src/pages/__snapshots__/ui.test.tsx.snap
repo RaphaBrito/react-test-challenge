@@ -525,6 +525,115 @@ exports[`ui tests > handles contact creation 1`] = `
 </div>
 `;
 
+exports[`ui tests > handles contact deletion 1`] = `
+<div>
+  <div>
+    <h1>
+      Contatos
+    </h1>
+    <div
+      class="_listGrid_f34e7c"
+    >
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          Cesar
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            cesar@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <div
+        class="_card_277467"
+      >
+        <img
+          alt="avatar"
+          class="_cardImage_277467"
+          src="/src/assets/images/avatar.png"
+        />
+        <h3>
+          cesare
+        </h3>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="phone icon"
+            height="20px"
+            src="/src/assets/icons/phone.png"
+          />
+          <p>
+            +558190836728
+          </p>
+        </div>
+        <div
+          class="_cardContactInfo_277467"
+        >
+          <img
+            alt="e-mail icon"
+            height="20px"
+            src="/src/assets/icons/e-mail.png"
+          />
+          <p>
+            Cesare@gmail.com
+          </p>
+        </div>
+        <div
+          class="_cardFooter_277467"
+        >
+          <button>
+            Editar
+          </button>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+      <button>
+        +
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`ui tests > handles contact editing 1`] = `
 <div>
   <div>

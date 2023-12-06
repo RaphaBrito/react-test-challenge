@@ -5,13 +5,12 @@ import { render, waitFor, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import jsonServer from "json-server";
 
-import * as notes from "@/hooks/notes";
-import { Notebook } from "@/pages/notebook";
-import { type NoteFormData } from "@/types/note";
-
 import * as contacts from "@/hooks/contacts";
+import * as notes from "@/hooks/notes";
 import { Contacts } from "@/pages/contacts";
-import { ContactFormData, type Contact } from "@/types/contact";
+import { Notebook } from "@/pages/notebook";
+import { ContactFormData } from "@/types/contact";
+import { type NoteFormData } from "@/types/note";
 
 const json = {
   contacts: [
@@ -92,9 +91,6 @@ function ProviderWrapper({
 
 afterEach(() => {
   vi.restoreAllMocks();
-
-  // router.db.setState(JSON.parse(JSON.stringify(json)) as typeof json);
-  // router.db.write();
 
   resetDatabase();
 });
@@ -279,8 +275,8 @@ describe("ui tests", () => {
   });
 
   it("contacts renders loading state", async () => {
-    vi.spyOn(notes, "useNotes").mockReturnValue({
-      notes: [],
+    vi.spyOn(contacts, "useContacts").mockReturnValue({
+      contacts: [],
       isPending: true,
       isError: false,
     });
@@ -289,7 +285,7 @@ describe("ui tests", () => {
 
     const { container } = render(
       <ProviderWrapper queryClient={queryClient}>
-        <Notebook />
+        <Contacts />
       </ProviderWrapper>,
     );
 
@@ -314,10 +310,14 @@ describe("ui tests", () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
-        <ProviderWrapper queryClient={queryClient}>
-          <Contacts />
-        </ProviderWrapper>,
-      );
+      <ProviderWrapper queryClient={queryClient}>
+        <Contacts />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     await waitFor(() => {
       expect(
@@ -332,12 +332,14 @@ describe("ui tests", () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
-        <ProviderWrapper queryClient={queryClient}>
+      <ProviderWrapper queryClient={queryClient}>
         <Contacts />
       </ProviderWrapper>,
     );
 
-    //expect(container).toMatchSnapshot();
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     await waitFor(() => {
       expect(screen.getByText(json.contacts[0].name)).toBeInTheDocument();
@@ -350,41 +352,41 @@ describe("ui tests", () => {
     const formDataResponse = {
       name: "new name",
       email: "nem email",
-      phone: "0800"
+      phone: "0800",
     } satisfies ContactFormData;
 
     const queryClient = makeQueryClient();
-    
-    const { container } = render(
-        <ProviderWrapper queryClient={queryClient}>
-          <Contacts />
-        </ProviderWrapper>,
-      );
 
-      await waitFor(() => {
-        expect(queryClient.isFetching()).toBe(0);
-      })
+    const { container } = render(
+      <ProviderWrapper queryClient={queryClient}>
+        <Contacts />
+      </ProviderWrapper>,
+    );
+
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     await userEvent.click(screen.getByText("+"));
 
     const nameInput = screen.getByPlaceholderText("Name");
     expect(nameInput).toBeInTheDocument();
-  
+
     await userEvent.type(nameInput, "new name");
     expect(nameInput).toHaveValue("new name");
-  
+
     const emailInput = screen.getByPlaceholderText("Email");
     expect(emailInput).toBeInTheDocument();
-  
+
     await userEvent.type(emailInput, "new email");
     expect(emailInput).toHaveValue("new email");
 
     const phoneInput = screen.getByPlaceholderText("Phone");
     expect(phoneInput).toBeInTheDocument();
-  
+
     await userEvent.type(phoneInput, "new phone");
     expect(phoneInput).toHaveValue("new phone");
-  
+
     await userEvent.click(screen.getByText("Salvar"));
 
     await waitFor(() => {
@@ -398,14 +400,14 @@ describe("ui tests", () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
-        <ProviderWrapper queryClient={queryClient}>
-          <Contacts />
-        </ProviderWrapper>,
-      );
+      <ProviderWrapper queryClient={queryClient}>
+        <Contacts />
+      </ProviderWrapper>,
+    );
 
-      await waitFor(() => {
-        expect(queryClient.isFetching()).toBe(0);
-      })
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     const firstEditButton = screen.getAllByText("Editar")[0];
 
@@ -413,23 +415,22 @@ describe("ui tests", () => {
 
     const nameInput = screen.getByPlaceholderText("Name");
     expect(nameInput).toBeInTheDocument();
-  
+
     await userEvent.clear(nameInput);
     await userEvent.type(nameInput, "edited name");
-  
+
     const emailInput = screen.getByPlaceholderText("Email");
     expect(emailInput).toBeInTheDocument();
-    
+
     await userEvent.clear(emailInput);
     await userEvent.type(emailInput, "edited email");
 
     const phoneInput = screen.getByPlaceholderText("Phone");
     expect(phoneInput).toBeInTheDocument();
-    
+
     await userEvent.clear(phoneInput);
     await userEvent.type(phoneInput, "edited phone");
-  
-  
+
     await userEvent.click(screen.getByText("Salvar"));
 
     await waitFor(() => {
@@ -443,23 +444,24 @@ describe("ui tests", () => {
     const queryClient = makeQueryClient();
 
     const { container } = render(
-        <ProviderWrapper queryClient={queryClient}>
-          <Contacts />
-        </ProviderWrapper>,
-      );
+      <ProviderWrapper queryClient={queryClient}>
+        <Contacts />
+      </ProviderWrapper>,
+    );
 
-      await waitFor(() => {
-        expect(queryClient.isFetching()).toBe(0);
-      })
+    await waitFor(() => {
+      expect(queryClient.isFetching()).toBe(0);
+    });
 
     const firstTitle = screen.getByText("Raphael");
     const firstDeleteButton = screen.getAllByText("Remover")[0];
 
     await userEvent.click(firstDeleteButton);
 
-    // Wait for mutation to complete
     await waitFor(() => {
-      //expect(firstTitle).not.toBeInTheDocument();
+      expect(firstTitle).not.toBeInTheDocument();
     });
+
+    expect(container).toMatchSnapshot();
   });
 });
